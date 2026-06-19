@@ -1,0 +1,184 @@
+<% layout('/layouts/boilerplate') %>
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8 col-md-10">
+
+      <!-- Listing Details Card -->
+      <div class="card shadow-sm border-0 mb-4">
+        <h2 class="card-title fw-bold mb-3">
+            <%= data.title %>
+          </h2>
+        <img 
+          src="<%= data.Image.url %>" 
+          class="card-img-top object-fit-cover" 
+          alt="Listing image"
+          style="height: 380px;"
+        >
+
+        <div class="card-body">
+          <p class="card-text text-muted">
+             Posted By: <%= data.owner.username %>
+          </p>
+          <p class="card-text text-muted">
+            <%= data.description %>
+          </p>
+        </div>
+
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <span class="fw-semibold">Price:</span>
+            &#x20B9; <%= data.price.toLocaleString("en-IN") %>
+          </li>
+          <li class="list-group-item">
+            <span class="fw-semibold">Location:</span>
+            <%= data.location %>
+          </li>
+          <li class="list-group-item">
+            <span class="fw-semibold">Country:</span>
+            <%= data.country %>
+          </li>
+        </ul>
+
+        <!-- Edit/Delete Buttons -->
+ <%  if( user && user._id.equals(data.owner._id)){ %>
+        <div class="card-body border-top">
+          <div class="d-flex gap-2">
+            <form action="/showall/<%= data.id %>/edit" method="get">
+              <button class="btn btn-dark">
+                Edit
+              </button>
+            </form>
+
+            <form action="/showall/<%= data.id %>?_method=DELETE" method="post">
+              <button class="btn btn-outline-danger">
+                Delete
+              </button>
+            </form>
+          </div>
+        </div>
+       <% } %>
+
+      </div>
+
+      <!-- Add Review Section -->
+       <% if( user )  { %>
+<div class="card shadow-sm border-0 mb-4">
+        <div class="card-body">
+          <h3 class="card-title mb-3">
+            Add Review
+          </h3>
+
+          <form action="/showall/<%= data.id %>/reviews" method="post">
+            <div class="mb-3">
+              <label for="range1" class="form-label">Rate based on your experience</label>
+              <fieldset class="starability-coinFlip">
+  <input type="radio" id="no-rate" class="input-no-rate" name="Reviews[rating]" value="0" checked aria-label="No rating." />
+  <input type="radio" id="first-rate1" name="Reviews[rating]" value="1" />
+  <label for="first-rate1" title="Terrible">1 star</label>
+  <input type="radio" id="first-rate2" name="Reviews[rating]" value="2" />
+  <label for="first-rate2" title="Not good">2 stars</label>
+  <input type="radio" id="first-rate3" name="Reviews[rating]" value="3" />
+  <label for="first-rate3" title="Average">3 stars</label>
+  <input type="radio" id="first-rate4" name="Reviews[rating]" value="4" />
+  <label for="first-rate4" title="Very good">4 stars</label>
+  <input type="radio" id="first-rate5" name="Reviews[rating]" value="5" />
+  <label for="first-rate5" title="Amazing">5 stars</label>
+</fieldset>
+            </div>
+
+            <div class="mb-3">
+              <label for="exampleFormControlTextarea1" class="form-label">
+                Comment
+              </label>
+              <textarea 
+                class="form-control" 
+                id="exampleFormControlTextarea1" 
+                rows="3" 
+                name="Reviews[comment]" 
+                required
+              ></textarea>
+            </div>
+
+            <button class="btn btn-primary">
+              Submit Review
+            </button>
+          </form>
+        </div>
+      </div>
+       <%} %>
+      
+
+      <!-- All Reviews Section -->
+      <hr>
+    
+    <div class="row row-cols-2 ms-2 border-5">
+ <% if(data.reviews && data.reviews.length){ %> 
+  <h3 class="offset-5">All Reviews</h3> <hr> 
+      <% for(let review of data.reviews){ %>
+       <div class="card mt-2 mb-1 px-2" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title"><%= review.owner.username %> </h5>
+<p class="starability-result card-text" data-rating="<%= review.rating %>"> Rated:<%= review.rating %>stars</p>       
+     <p class="card-text"><%= review.comment %></p>
+        <!--  if(user._id.equals(dat)) -->
+          <% if(user &&  review.owner._id.equals(user._id)) { %>
+ <form action="/showall/<%= data.id %>/reviews/<%= review.id %>?_method=DELETE" method="post">
+  <button class="btn btn-dark">Delete</button>
+</form>
+         <% } %>
+          <% } %>
+          <% } %>
+      </div>
+         </div>
+</div>
+
+
+      <div class="col-6 offset-2">
+        <div id="map"></div>
+      </div>
+    </div>
+
+
+    <script>
+  const mapToken = "<%= mapToken %>";
+     const data = <%- JSON.stringify(data) %>;
+</script>
+
+    <script src="/js/map.js"></script>
+     
+    
+ 
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

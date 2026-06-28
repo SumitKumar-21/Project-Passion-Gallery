@@ -1,0 +1,44 @@
+/* body{
+  padding: 25px;
+} */
+.title {
+	color: #5C6AC4;
+}
+.footerMainDiv{
+  height: 130px;
+  width: 100%;
+  background-color: black;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  justify-content: space-around;
+  margin-bottom: 0;
+}
+i{
+  font-size: 28px;
+  color: white;
+  margin-right:15px ;
+  margin-bottom: 10px;
+  background-color: black;
+}
+.text{
+  background-color: black;
+}
+.iconsDiv{
+  background-color:black;
+}
+.social-Icon{
+  background-color: black;
+}
+
+.facebook:hover,
+.twitter:hover,
+.linkedin:hover,
+.github:hover {
+  color: rgb(150, 150, 160);
+}
+
+
+

@@ -1,46 +1,169 @@
 <% layout('/layouts/boilerplate') %>
 
-<body>
-    <h1>Fill the void space and submit to add new </h1>
-    <form action="/showall/new" method="post"  class="needs-validation" novalidate enctype="multipart/form-data">
-     <div class="mb-3">
-    <label  class="form-label" >Title</label>
-<input class="form-control" type="text"  aria-label="default input example" name="listing[title]" required>
-<div class="valid-feedback">Looks Good!</div>
-<div class="invalid-feedback">Title is most required⚠️</div>
+<a class="btn btn-dark ms-0 mt-1" href="/showall" role="button">
+  <i class="fa-solid fa-arrow-left bg-transparent fs-6 me-1"></i>
+  Back
+</a>
+  <div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="card shadow-lg w-75" >
+      <div class="card-header text-center" style="background-color: rgb(198, 183, 183);">
+        <h2 class="bg-transparent fw-bold">Fill the Details to Add New Listing</h2>
+      </div>
+      <div class="card-body">
+        <form action="/showall/new" method="post" class="needs-validation" novalidate enctype="multipart/form-data">
+          
+          <!-- Title -->
+          <div class="mb-3 row align-items-center ">
+            <label class="form-label col-sm-2 fw-bold text-center">Hotel Name:</label>
+            <div class="col-sm-10">
+           <input class="form-control" type="text" name="listing[title]" required>
+            <div class="valid-feedback">Looks Good!</div>
+            <div class="invalid-feedback">⚠️ Title is required</div>
+            </div>
+           
+          </div>
+
+          <!-- Description -->
+          <div class="mb-3 row align-items-center">
+            <label class="form-label fw-bold col-sm-2 text-center">Description:</label>
+            <div class="col-sm-10">
+             <textarea class="form-control" rows="3" name="listing[description]" required></textarea>
+            <div class="valid-feedback">Looks Good!</div>
+            <div class="invalid-feedback">⚠️ Description required</div>
+            </div>
+          </div>
+
+          <!-- Image Upload -->
+          <div class="mb-3 row align-items-center ">
+            <label class="form-label col-sm-2 fw-bold text-center text-center">Upload Image :</label>
+            <div class="col-sm-10">
+            <input type="file" class="form-control" name="listing[Image]" required>
+            <div class="valid-feedback">Looks Good!</div>
+            <div class="invalid-feedback">⚠️ Please upload an image</div>
+            </div>
+            
+          </div>
+
+          <!-- Price and catergory -->
+          <div class="mb-3 row">
+            <div class="col-md-7 row align-items-center ms-3">
+            <label class="form-label col-sm-3 text-center fw-bold">Price:</label>
+            <div class="col-sm-9">
+            <input class="form-control" type="text" name="listing[price]" required>
+            <div class="valid-feedback">Looks Good!</div>
+            <div class="invalid-feedback">⚠️ Enter a valid price</div>
+            </div>
+            </div>
+            <div class="col-md-4 row align-items-center ms-3">
+           <div class="btn-group">
+<button class="btn btn-secondary btn-lg" type="button">
+  Category
+</button>
+<button type="button" class="btn btn-lg btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+  <span class="visually-hidden">Toggle Dropdown</span>
+</button>
+<ul class="dropdown-menu p-1">
+  <li class="">
+  <div class="form-check">
+  <input class="form-check-input" type="checkbox" name="listing[category][]"  value="rooms" id="checkDefault">
+  <label class="form-check-label" for="checkDefault">
+    Rooms
+  </label>
   </div>
- <div class="mb-3">
-  <label for="exampleFormControlTextarea1" class="form-label">Description</label>
-  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="listing[description]" required></textarea>
-  <div class="valid-feedback">Looks Good!</div>
-<div class="invalid-feedback">Description required⚠️</div>
+  </li>
+  <li>
+  <div class="form-check">
+  <input class="form-check-input" type="checkbox" name="listing[category][]" value="amazing pools" id="checkChecked" >
+  <label class="form-check-label" for="checkChecked">
+    Amazing Pools
+  </label>
+  </div>
+  </li>
+  <li>
+  <div class="form-check">
+  <input class="form-check-input" type="checkbox" name="listing[category][]" value="iconic city" id="checkChecked" >
+  <label class="form-check-label" for="checkChecked">
+    Iconic City
+  </label>
+  </div>
+  </li>
+  <li>
+  <div class="form-check">
+  <input class="form-check-input" type="checkbox" name="listing[category][]" value="adventure" id="checkChecked" >
+  <label class="form-check-label" for="checkChecked">
+    Adventure
+  </label>
+  </div>
+  </li>
+
+  <li>
+  <div class="form-check">
+  <input class="form-check-input" type="checkbox" name="listing[category][]" value="mountains" id="checkChecked" >
+  <label class="form-check-label" for="checkChecked">
+    Mountains
+  </label>
+  </div>
+  </li>
+
+  <li>
+  <div class="form-check">
+  <input class="form-check-input" type="checkbox" name="listing[category][]" value="natural beauty" id="checkChecked" >
+  <label class="form-check-label" for="checkChecked">
+    Natural Beauty
+  </label>
+  </div>
+  </li>
+
+  <li>
+  <div class="form-check">
+  <input class="form-check-input" type="checkbox" name="listing[category][]" value="farms" id="checkChecked" >
+  <label class="form-check-label" for="checkChecked">
+    Farms
+  </label>
+  </div>
+  </li>
+
+  <li>
+  <div class="form-check">
+  <input class="form-check-input" type="checkbox" name="listing[category][]" value="snows" id="checkChecked" >
+  <label class="form-check-label" for="checkChecked">
+    Snows
+  </label>
+  </div>
+  </li>
+
+</ul>
 </div>
-  <div class="mb-3">
-    <label for="exampleInputText1" class="form-label">upload image</label>
-    <input type="file" class="form-control" name="listing[Image]"  id="exampleInputText1" required>
-    <div class="valid-feedback">Looks Good!</div>
-<div class="invalid-feedback">⚠️</div>
+            </div>
+           
+          </div>
+          <!-- country and  location -->
+          <div class="mb-3 row">
+            <div class="col-md-5 row align-items-center ms-3">
+            <label class="form-label col-sm-4 text-center fw-bold">Location:</label>
+            <div class="col-sm-8">
+            <input class="form-control" type="text" name="listing[location]" required>
+            <div class="valid-feedback">Looks Good!</div>
+            <div class="invalid-feedback">⚠️ Enter a valid price</div>
+            </div>
+            </div>
+            <div class="col-md-5 row align-items-center ms-3">
+            <label class="form-label col-sm-4 fw-bold">Country:</label>
+            <div class="col-sm-8">
+            <input class="form-control" type="text" name="listing[country]" required>
+            <div class="valid-feedback">Looks Good!</div>
+            <div class="invalid-feedback">Required⚠️</div>
+            </div>
+            </div>
+           
+          </div>
+
+          <!-- Submit Button -->
+          <div class="text-center">
+            <button class="btn btn-success px-5">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
-  <div class="mb-3">
-    <label class="form-label">Price</label>
-    <input class="form-control" type="text"  aria-label="default input example" name="listing[price]" required> 
-    <div class="valid-feedback">Looks Good!</div>
-<div class="invalid-feedback">⚠️Should be valid </div>
-  </div>
-  <div class="mb-3">
-    <label  class="form-label">Location</label>
-   <input class="form-control" type="text"  aria-label="default input example" name="listing[location]" required>
-   <div class="valid-feedback">Looks Good!</div>
-<div class="invalid-feedback">⚠️Missing</div> 
-  </div>
-  <div class="mb-3">
-    <label  class="form-label">Country</label>
-   <input class="form-control" type="text"  aria-label="default input example" name="listing[country]" required> 
-   <div class="valid-feedback">Looks Good!</div>
-<div class="invalid-feedback">Missing⚠️</div>
-  </div>
-  <button class="btn btn-primary">Submit</button>
-</form>
-    
-</body>
 

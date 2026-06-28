@@ -1,7 +1,6 @@
 const express =require("express");
 const router = express.Router();
 const wrapAsync = require("../utils/wrapAsync.js");
-const Listing = require("../models/listing.js");
 const {isLoggedin,verifyOwner,validateSchema,validateUpdateSchema} =require("../middleware/middlewares.js");
 const listingController = require("../controller/listing.js");
 const multer  = require('multer')
@@ -28,7 +27,7 @@ router
 router
 .route("/:id")
 .get(wrapAsync(listingController.showIndividually ))
-.put(verifyOwner, upload.single('listing[Image]'),validateUpdateSchema,wrapAsync(listingController.updateEdit ))
+.put(isLoggedin,verifyOwner, upload.single('listing[Image]'),validateUpdateSchema,wrapAsync(listingController.updateEdit ))
 .delete(isLoggedin,verifyOwner,wrapAsync(listingController.destroy ));
 
 //edit

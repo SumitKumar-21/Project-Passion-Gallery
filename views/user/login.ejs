@@ -1,19 +1,37 @@
 <% layout('/layouts/boilerplate') %>
-<body>
-    <h1> Login </h1>
-    <form action="/login" method="post"  class="needs-validation" novalidate>
-     <div class="mb-3">
-    <label  class="form-label" >Username</label>
-<input class="form-control" type="text"  aria-label="default input example" name="username" required>
-<div class="valid-feedback">Looks Good!</div>
-<div class="invalid-feedback">Username is required </div>
-  </div>
-  <div class="mb-3">
-    <label  class="form-label">Password</label>
-   <input class="form-control" type="password"  aria-label="default input example" name="password" required> 
-  </div>
-  <button class="btn btn-primary">Login</button>
-</form>
+<a class="btn btn-dark ms-0 mt-1" href="/showall" role="button">
+  <i class="fa-solid fa-arrow-left bg-transparent fs-6 me-1"></i>
+  Back
+</a>
+<div class="container d-flex justify-content-center align-items-center vh-100">
+  <div class="border border-dark p-4 rounded-3 shadow w-50">
+    <h1 class="text-center mb-4">Login</h1>
     
-</body>
-
+    <form action="/login" method="post" class="needs-validation" novalidate>
+      
+      <!-- Username -->
+      <div class="mb-3 row">
+        <label class="form-label col-sm-3 text-end">Username</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" name="username" required>
+          <div class="invalid-feedback">Username is required</div>
+        </div>
+      </div>
+      
+      <!-- Password -->
+      <div class="mb-3 row">
+        <label class="form-label col-sm-3 text-end">Password</label>
+        <div class="col-sm-9">
+          <input type="password" class="form-control" name="password" required>
+          <div class="invalid-feedback">Password is required</div>
+        </div>
+      </div>
+      
+      <!-- Submit -->
+      <div class="text-center">
+        <button class="btn btn-primary px-5">Login</button>
+      </div>
+      
+    </form>
+  </div>
+</div>

@@ -11,17 +11,9 @@ const passport = require("passport");
 const LocalStartegy = require("passport-local");
 const User = require("./models/user.js");
 const ExpressError =  require("./utils/ExpressError.js");
-const mongoUrl = process.env.MONGODB || process.env.MONGODB_URI || process.env.MONGO_URI;
+const mongoUrl =process.env.MONGODB;
 const {MongoStore} = require('connect-mongo');
-
-if (!mongoUrl) {
-    throw new Error("MongoDB connection string is missing. Set MONGODB in Render's Environment settings.");
-}
-
-if (!process.env.SECRETCODE) {
-    throw new Error("Session secret is missing. Set SECRETCODE in Render's Environment settings.");
-}
-
+//session stroing it into  mongodb  cloud server  
 const store = MongoStore.create({
     mongoUrl:mongoUrl,
     crypto:{
@@ -40,16 +32,13 @@ const method ={
         maxAge: 7*24*60*60*1000,
     }
 }
+
 app.use(session(method));
-
-
 app.use(express.urlencoded({ extended: true }));
 app.set("view engine","ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.static(path.join(__dirname,"public")));
 app.use(express.json());
-
-
 
 
 app.use(flash());
@@ -74,7 +63,7 @@ app.use((req,res,next)=>{
     res.locals.success= req.flash("success");
     res.locals.error= req.flash("error");
     next();
-})
+});
 
 const listing = require("./routes/listing.js");
 app.use("/showall",listing);
@@ -87,8 +76,8 @@ app.use("/",users);
 
 
 //home page
-app.get("/",(req,res)=>{
-    res.render("home.ejs");
+app.get("/", (req, res) => {
+  res.redirect("/showall");
 });
 
 //Error handling 
@@ -101,8 +90,8 @@ app.use((err,req,res,next)=>{
     res.status(status).render("error.ejs",{message});
 });
 
-//starting server
-const port = process.env.PORT || 8080;
+// starting server()
+const port = 8080;
 
 async function startServer() {
     try {
@@ -116,6 +105,5 @@ async function startServer() {
         process.exit(1);
     }
 }
-
 startServer();
 

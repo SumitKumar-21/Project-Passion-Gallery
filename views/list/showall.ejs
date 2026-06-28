@@ -1,13 +1,137 @@
 <% layout('/layouts/boilerplate') %>
     
-    <h1>Here are the list of avaliable Location </h1>
+<div class="d-flex text-center cursor-pointer ">
+  <a href="/showall" class="text-decoration-none text-reset">
+ <div class="pt-1 me-4  category" style="cursor: pointer;">
+    <span class="material-symbols-rounded">
+crown
+</span>
+    <p  style="font-size: smaller;">Trending</p>
+  </div>
+  </a>
+
+
+ <a href="/showall?category=rooms" class="text-decoration-none text-reset">
+  <div  class="pt-1 me-4  category" style="cursor: pointer;">
+<span class="material-symbols-rounded">
+hotel
+</span> <p style="font-size: smaller;">Rooms</p>
+  </div>
+ </a>
+
+  <a href="/showall?category=amazing pools" class="text-decoration-none text-reset">
+ <div class="pt-1 me-4 category" style="cursor: pointer;">
+<span class="material-symbols-rounded ">
+pool
+</span> <p style="font-size: smaller;">Amazing Pools</p>
+  </div>
+ </a>
+ 
+   <a href="/showall?category=mountains" class="text-decoration-none text-reset">
+ <div class="pt-1 me-4 category" style="cursor: pointer;">
+<span class="material-symbols-rounded ">
+mountain_flag
+</span>    <p style="font-size: smaller;">Mountains</p>
+  </div>
+ </a>
+ 
+
+   <a href="/showall?category=snows" class="text-decoration-none text-reset">
+  <div class="pt-1 me-4 category" style="cursor: pointer;">
+<span class="material-symbols-rounded ">
+snowboarding
+</span>    <p style="font-size: smaller;">Snows</p>
+  </div>
+ </a>
+
+  <a href="/showall?category=adventure" class="text-decoration-none text-reset">
+ <div class="pt-1 me-4 category" style="cursor: pointer;">
+    <span class="material-symbols-rounded">
+hiking
+</span>
+    <p style="font-size: smaller;">Adventure</p>
+  </div>
+ </a>
+ 
+  <a href="/showall?category=natural%20beauty" class="text-decoration-none text-reset">
+ <div class="pt-1 me-4 category" style="cursor: pointer;">
+ <span class="material-symbols-rounded">landscape</span>
+    <p style="font-size: smaller;">Natural Beauty</p>
+  </div>
+ </a>
+ 
+  <a href="/showall?category=iconic%20city" class="text-decoration-none text-reset">
+ <div class="pt-1 me-4 category" style="cursor: pointer;">
+  <span class="material-symbols-rounded ">
+location_city
+</span>
+    <p style="font-size: smaller;">Iconic Cities</p>
+  </div>
+ </a>
+ 
+
+  <a href="/showall?category=farms" class="text-decoration-none text-reset">
+ <div class="pt-1 me-4 category" style="cursor: pointer;">
+   <span class="material-symbols-rounded ">
+agriculture
+</span>
+    <p style="font-size: smaller;">Farms</p>
+  </div>
+ </a>
+ 
+
+  <div class="d-flex border border-1 rounded-3 px-1 border-dark shadow-sm" style="overflow: hidden;">
+<div class="d-flex align-items-center bg-white rounded-4 shadow-sm px-3 py-1">
+
+ <a href="https://www.trip.com/flights/" target="_blank" class="text-reset text-decoration-none">
+ <div class="text-center me-5 category" style="cursor:pointer; transition:.3s;">
+        <span class="material-symbols-rounded fs-4 text-primary bg-light rounded-circle p-2 shadow-sm ">
+            flight
+        </span>
+        <p class="mb-0 mt-1 fw-semibold small">Flights</p>
+    </div>
+ </a>
+   <a href="https://www.ixigo.com/trains" target="_blank" class="text-reset text-decoration-none">
+<div class="text-center me-5 category" style="cursor:pointer; transition:.3s;">
+        <span class="material-symbols-rounded fs-4 text-success bg-light rounded-circle p-2 shadow-sm">
+            train
+        </span>
+        <p class="mb-0 mt-1 fw-semibold small">Train</p>
+    </div>
+   </a>
+    
+  <a href="https://www.uber.com/in/en/ride/ubertaxi/?from_challenge=1" target="_blank" class="text-decoration-none text-reset">
+ <div class="text-center category me-2" style="cursor:pointer; transition:.3s;">
+        <span class="material-symbols-rounded fs-4 text-warning bg-light rounded-circle p-2 shadow-sm">
+            local_taxi
+        </span>
+        <p class="mb-0 mt-1 fw-semibold small">Cabs</p>
+    </div>
+  </a>
+    </div>
+  </div>
+</div>
+<% if (categoryName) { %>
+  <h1>Popular Choices</h1>
+<% } else { %>
+  <h1>Trending</h1>
+<% } %>
+      
           
     <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
         <% list.forEach(function (l){%>
      <main class="p-3 m-0 border-0 bd-example m-0 border-0" id="singelCard">
         <a href="/showall/<%=l.id%>" class="showOne">
     <div class="card" style="width: 22rem;">
-    <img src="<%= l.Image.url %>" class="card-img-top" alt="<%= l.title %>" style="height: 18rem;">
+  <div class="card position-relative" style="width: 22rem;">
+  <img src="<%= l.Image.url %>" 
+       class="card-img-top" 
+       alt="<%= l.title %>" 
+       style="height: 18rem;">
+  <!-- Icon overlay -->
+     <i class="fa-regular fa-heart bg-transparent  mt-2 offset-10 text-red  position-absolute"></i>
+</div>
+
      <h5 class="card-title"> <%= l.title%></h5>
     <p class="card-p">&#x20B9 <%= l.price %> per night</p>
     </div>
@@ -15,6 +139,8 @@
   </main>
 <% });%>
     </div>
+  
+
  
     <!-- .toLocaleString("en-IN") -->
 

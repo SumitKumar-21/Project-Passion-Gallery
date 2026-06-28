@@ -28,7 +28,7 @@ module.exports.passwordAuthenticate= passport.authenticate("local", {failureRedi
 });
 
 module.exports.renderAfterLogin = (req, res) => {
-    req.flash("success", "Login Successful 🫡");
+    req.flash("success", "Login Successful");
     let redirectUrl = res.locals.redirectUrl || "/showall";
     res.redirect(redirectUrl);
   };

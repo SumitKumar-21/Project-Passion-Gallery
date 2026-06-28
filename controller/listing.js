@@ -3,10 +3,17 @@ const mapUrl ="https://api.mapbox.com/search/geocode/v6/forward?q="
 
 
 //showall
-module.exports.showAll=async(req,res)=>{
-const list= await Listing.find({});
- res.render("list/showall.ejs",{list});
+module.exports.showAll = async (req, res) => {
+  let { category } = req.query;
+  let categoryName= category;
+
+  const list = category
+    ? await Listing.find({ category })
+    : await Listing.find({});
+
+  res.render("list/showall.ejs", { list,categoryName});
 };
+
 //logout
 module.exports.logout=(req,res,next)=>{
     req.logout((err)=>{
@@ -25,6 +32,7 @@ module.exports.renderNewForm=(req,res)=>{
 };
 module.exports.saveNewFormDate=async(req,res,next)=>{
    let info =new Listing(req.body.listing);
+   console.log(req.body.listing);
    let url = req.file.path;
    let filename = req.file.filename;
    info.owner = req.user._id;
@@ -48,6 +56,7 @@ module.exports.showIndividually=async(req,res)=>{
     }).populate("owner");
     if(!data){
         req.flash("error","List won't exists");
+        return res.redirect("/showall");
     }else{
             res.render("list/showIndividual.ejs",{data,mapToken:process.env.MAPBOX_API_TOKEN});
     }

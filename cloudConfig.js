@@ -6,15 +6,12 @@ cloudinary.config({
   api_secret: process.env.CLOUD_API_SECRET,
 });
 
-// Multer storage engine backed directly by the Cloudinary v2 SDK.
-// This avoids the unmaintained `multer-storage-cloudinary` package, whose
-// peer dependency only supports Cloudinary v1.
 const storage = {
   _handleFile(req, file, callback) {
     const uploadStream = cloudinary.uploader.upload_stream(
       {
         folder: "passion_gallery",
-        allowed_formats: ["jpg", "png", "jpeg", "pdf"],
+        allowed_formats: ["jpg", "png", "jpeg", "pdf","avif","webm","webp"],
       },
       (error, result) => {
         if (error) return callback(error);

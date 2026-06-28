@@ -15,15 +15,17 @@
         map.setFog({}); 
     });
 
+const el = document.createElement('div');
+el.className = 'custom-marker';
 
-  const marker = new mapboxgl.Marker()
+const marker = new mapboxgl.Marker(el)
   .setLngLat(data.geometry.coordinates)
   .setPopup(
-    new mapboxgl.Popup({ offset:35,closeButton:false ,altitude:10,closeOnMove:true, className:'popup' }) // optional offset
+    new mapboxgl.Popup({ offset: 35, closeButton: false, closeOnMove: true })
       .setHTML(`<h3>${data.title}</h3><p>The most populous resort in ${data.country}</p>`)
-      .setMaxWidth("300px")
   )
   .addTo(map);
+
 
 
 

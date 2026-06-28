@@ -30,9 +30,9 @@ module.exports.verifyOwner=async(req,res,next)=>{
 };
 
 module.exports.validateSchema=(req,res,next)=>{
-    if(req.body.Image && req.body.listing){
-        req.body.listing.Image = req.body.Image;
-    }
+    // if(req.body.Image && req.body.listing){
+    //     req.body.listing.Image = req.body.Image;
+    // }
     let {error}= listingSchema.validate(req.body.listing);
     if(error){
         let errMsg = error.details.map((el)=> el.message).join(",");
@@ -42,9 +42,9 @@ module.exports.validateSchema=(req,res,next)=>{
     }
 };
 module.exports.validateUpdateSchema=(req,res,next)=>{
-    if(req.body.Image && req.body.listing){
-        req.body.listing.Image = req.body.Image;
-    }
+    // if(req.body.Image && req.body.listing){
+    //     req.body.listing.Image = req.body.Image;
+    // }
     let {error}= updateListingSchema.validate(req.body.listing);
     if(error){
         let errMsg = error.details.map((el)=> el.message).join(",");

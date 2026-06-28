@@ -1,99 +1,176 @@
 <% layout('/layouts/boilerplate') %>
 
-<div class="row mt-3">
-  <div class="col-8 offset-2">
-    <h3>Edit <%= info.title %></h3>
-    <form method="post" action="/showall/<%=info.id%>?_method=PUT" novalidate class="needs-validation" enctype="multipart/form-data">
-      
-      <div class="mb-3">
-        <label for="title" class="form-label">Title</label>
-        <input
-          id="title"
-          class="form-control"
-          type="text"
-          name="listing[title]"
-          value="<%=info.title %>"
-          required
-        />
-        <div class="valid-feedback">Looks Good!</div>
-        <div class="invalid-feedback">Title is most required⚠️</div>
-      </div>
+<a class="btn btn-dark ms-0 mt-1" href="/showall" role="button">
+  <i class="fa-solid fa-arrow-left bg-transparent fs-6 me-1"></i>
+  Back
+</a>
 
-      <div class="mb-3">
-        <label for="description" class="form-label">Description</label>
-        <textarea
-          class="form-control"
-          id="description"
-          rows="3"
-          name="listing[description]"
-          required><%=info.description %></textarea>
-        <div class="valid-feedback">Looks Good!</div>
-        <div class="invalid-feedback">Description required⚠️</div>
+  <div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="card shadow-lg w-75">
+      <div class="card-header text-center" style="background-color: rgb(198, 183, 183);">
+        <h2 class="bg-transparent fw-bold">Edit Listing: <%= info.title %></h2>
       </div>
+      <div class="card-body">
+        <form method="post" action="/showall/<%=info.id%>?_method=PUT" novalidate class="needs-validation" enctype="multipart/form-data">
+          
+          <!-- Title -->
+          <div class="mb-3 row align-items-center">
+            <label class="form-label col-sm-2 fw-bold text-center">Hotel Name:</label>
+            <div class="col-sm-10">
+              <input class="form-control" type="text" name="listing[title]" value="<%=info.title %>" required>
+              <div class="valid-feedback">Looks Good!</div>
+              <div class="invalid-feedback">⚠️ Title is required</div>
+            </div>
+          </div>
 
-      <div class="mb-3">
-        <label class="form-label">Current Image</label>
-        <div>
-          <img src="<%=info.Image.url %>" class="img-thumbnail" style="max-height: 200px;" alt="Current Listing Image">
-        </div>
-      </div>
+          <!-- Description -->
+          <div class="mb-3 row align-items-center">
+            <label class="form-label fw-bold col-sm-2 text-center">Description:</label>
+            <div class="col-sm-10">
+              <textarea class="form-control" rows="3" name="listing[description]" required><%=info.description %></textarea>
+              <div class="valid-feedback">Looks Good!</div>
+              <div class="invalid-feedback">⚠️ Description required</div>
+            </div>
+          </div>
 
-      <div class="mb-3">
-        <label for="image" class="form-label">Upload New Image</label>
-        <input
-          id="image"
-          class="form-control"
-          type="file"
-          name="listing[Image]"
-        />
-        <div class="valid-feedback">Looks Good!</div>
-        <div class="invalid-feedback">⚠️</div>
-      </div>
+          <!-- Current Image -->
+          <div class="mb-3 row align-items-center">
+            <label class="form-label col-sm-2 fw-bold text-center">Current Image:</label>
+            <div class="col-sm-10">
+              <img src="<%=info.Image.url %>" class="img-thumbnail shadow-sm" style="max-height: 100px; width: 100px;" alt="Current Listing Image">
+            </div>
+          </div>
 
-      <div class="row mb-3">
-        <div class="col-md-4">
-          <label for="price" class="form-label">Price</label>
-          <input
-            id="price"
-            class="form-control"
-            type="number"
-            name="listing[price]"
-            value="<%=info.price %>"
-            required
-          />
-          <div class="valid-feedback">Looks Good!</div>
-          <div class="invalid-feedback">⚠️Should be valid</div>
-        </div>
-        <div class="col-md-8">
-          <label for="location" class="form-label">Location</label>
-          <input
-            id="location"
-            class="form-control"
-            type="text"
-            name="listing[location]"
-            value="<%=info.location %>"
-            required
-          />
-          <div class="valid-feedback">Looks Good!</div>
-          <div class="invalid-feedback">⚠️Should not be empty</div>
-        </div>
-      </div>
+          <!-- Upload New Image -->
+          <div class="mb-3 row align-items-center">
+            <label class="form-label col-sm-2 fw-bold text-center">Upload New Image:</label>
+            <div class="col-sm-10">
+              <input type="file" class="form-control" name="listing[Image]">
+              <div class="valid-feedback">Looks Good!</div>
+              <div class="invalid-feedback">⚠️ Please upload a valid image</div>
+            </div>
+          </div>
 
-      <div class="mb-3">
-        <label for="country" class="form-label">Country</label>
-        <input
-          id="country"
-          class="form-control"
-          type="text"
-          name="listing[country]"
-          value="<%=info.country %>"
-          required
-        />
-        <div class="valid-feedback">Looks Good!</div>
-        <div class="invalid-feedback">⚠️Should not be empty </div>
-      </div>
-
-      <button class="btn btn-dark mb-5 mt-2">Submit Change</button>
-    </form>
+          <!-- Price & Location -->
+          <div class="mb-3 row">
+            <div class="col-md-5 row align-items-center ms-3">
+              <label class="form-label col-sm-4 text-center fw-bold">Price:</label>
+              <div class="col-sm-8">
+                <input class="form-control" type="number" name="listing[price]" value="<%=info.price %>" required>
+                <div class="valid-feedback">Looks Good!</div>
+                <div class="invalid-feedback">⚠️ Enter a valid price</div>
+              </div>
+            </div>
+            <div class="col-md-4 row align-items-center ms-5">
+               <div class="btn-group">
+<button class="btn btn-secondary btn-lg" type="button">
+  Category
+</button>
+<button type="button" class="btn btn-lg btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+  <span class="visually-hidden">Toggle Dropdown</span>
+</button>
+<ul class="dropdown-menu p-1">
+  <li class="">
+  <div class="form-check">
+  <input class="form-check-input" type="checkbox" value="rooms" id="checkDefault" <%= info.category.includes("rooms") ? "checked" : "" %>>
+  <label class="form-check-label" for="checkDefault">
+    Rooms
+  </label>
   </div>
+  </li>
+  <li>
+  <div class="form-check">
+  <input class="form-check-input" type="checkbox" value="amzing Pools" id="checkChecked" <%= info.category.includes("amazing pools")? "checked":"" %> >
+  <label class="form-check-label" for="checkChecked">
+    Amazing Pools
+  </label>
+  </div>
+  </li>
+  <li>
+  <div class="form-check">
+  <input class="form-check-input" type="checkbox" value="iconic city" id="checkChecked" <%= info.category.includes("iconic city")? "checked":"" %> >
+  <label class="form-check-label" for="checkChecked">
+    Iconic City
+  </label>
+  </div>
+  </li>
+  <li>
+  <div class="form-check">
+  <input class="form-check-input" type="checkbox" value="adventure" id="checkChecked" <%= info.category.includes("adventure")? "checked":"" %> >
+  <label class="form-check-label" for="checkChecked">
+    Adventure
+  </label>
+  </div>
+  </li>
+
+  <li>
+  <div class="form-check">
+  <input class="form-check-input" type="checkbox" value="mountains" id="checkChecked" <%= info.category.includes("mountains")? "checked":"" %> >
+  <label class="form-check-label" for="checkChecked">
+    Mountains
+  </label>
+  </div>
+  </li>
+
+  <li>
+  <div class="form-check">
+  <input class="form-check-input" type="checkbox" value="natural beauty" id="checkChecked" <%= info.category.includes("natural beauty")? "checked":"" %> >
+  <label class="form-check-label" for="checkChecked">
+    Natural Beauty
+  </label>
+  </div>
+  </li>
+
+  <li>
+  <div class="form-check">
+  <input class="form-check-input" type="checkbox" value="farms" id="checkChecked" <%= info.category.includes("farms")? "checked":"" %> >
+  <label class="form-check-label" for="checkChecked">
+    Farms
+  </label>
+  </div>
+  </li>
+
+  <li>
+  <div class="form-check">
+  <input class="form-check-input" type="checkbox" value="snows" id="checkChecked" <%= info.category.includes("snows")? "checked":"" %> >
+  <label class="form-check-label" for="checkChecked">
+    Snows
+  </label>
+  </div>
+  </li>
+
+</ul>
 </div>
+            </div>
+          </div>
+
+          <!-- country and location -->
+          <div class="mb-3 row">
+            <div class="col-md-5 row align-items-center ms-3">
+              <label class="form-label col-sm-4 text-center fw-bold">Location:</label>
+              <div class="col-sm-8">
+                <input class="form-control" type="text" name="listing[location]" value="<%=info.location %>" required>
+                <div class="valid-feedback"></div>
+                  <div class="invalid-feedback">⚠️ Location required</div>
+
+              </div>
+            </div>
+            <div class="col-md-5 row align-items-center ms-3">
+              <label class="form-label col-sm-4 fw-bold text-center">Country:</label>
+              <div class="col-sm-8">
+                <input class="form-control" type="text" name="listing[country]" value="<%=info.country %>" required>
+                <div class="valid-feedback"></div>
+                <div class="invalid-feedback">⚠️ Country required</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="text-center">
+            <button class="btn btn-success px-5">Submit Change</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
